@@ -2,7 +2,7 @@ import math
 import os
 import pandas as pd
 from flask import Flask, render_template, request, jsonify, Response, url_for, redirect
-# from flask_cors import CORS, cross_origin
+from flask_cors import CORS, cross_origin
 from application_logging.logger import App_Logger
 from scaling.scaling import split_data
 from featuring_engineering.featureEngineering import Encoding
@@ -13,7 +13,7 @@ application = Flask(__name__)
 
 
 @application.route('/', methods=['GET', 'POST'])  # To render Homepage
-# @cross_origin()
+@cross_origin()
 def home_page():
     return render_template('index.html')
 
@@ -41,7 +41,7 @@ def main():
 
 
 @application.route('/predict', methods=['GET', 'POST'])
-# @cross_origin()
+@cross_origin()
 def predict():
     log_writer = App_Logger()
     file = open("application_logging/logging.txt", 'a+')
